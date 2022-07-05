@@ -21,47 +21,55 @@
         <form class="row text-dark bg-white p-5 shadow-sm form">
             <h1 class="heading text-center mb-5">Zarejestruj się</h1>
 
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="first-name" placeholder="Imię">
+            <div class="col-6 mb-2 form-box">
+                <label for="first-name" class="fs-4 ps-1"> Imię</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="first-name" placeholder="Podaj imię">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="last-name" placeholder="Nazwisko">
+            <div class="col-6 mb-2 form-box">
+                <label for="last-name" class="fs-4 ps-1"> Nazwisko</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="last-name" placeholder="Podaj nazwisko">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 mb-3 form-box">
-                <input type="number" class="form-control form-control-lg fs-3" id="pesel" placeholder="PESEL">
-                <p class="error-text">error</p>
-
-            </div>
-
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="street" placeholder="Ulica">
-                <p class="error-text">error</p>
-            </div>
-
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="flat-number"
-                    placeholder="Nr Mieszkania">
+            <div class="col-12 mb-2 form-box">
+                <label for="pesel" class="fs-4 ps-1"> PESEL</label>
+                <input type="number" class="form-control form-control-lg fs-4" id="pesel" placeholder="Podaj PESEL">
                 <p class="error-text">error</p>
 
             </div>
 
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="city" placeholder="Miasto">
+            <div class="col-5 mb-2 form-box">
+                <label for="street" class="fs-4 ps-1"> Ulica</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="street" placeholder="Podaj ulicę">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-6 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3 error-input" id="zip"
-                    placeholder="Kod pocztowy">
+            <div class="col-7 mb-2 form-box">
+                <label for="street" class="fs-4 ps-1"> Numer mieszkania</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="flat-number"
+                    placeholder="Podaj nr mieszkania">
+                <p class="error-text">error</p>
+
+            </div>
+
+            <div class="col-5 mb-2 form-box">
+                <label for="profil-photo" class="fs-4 ps-1"> Miasto</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="city" placeholder="Podaj miasto">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 mb-3 form-box">
-                <select class="form-control form-control-lg fs-3" id="voivodeship">
+            <div class="col-7 mb-2 form-box">
+                <label for="profil-photo" class="fs-4 ps-1"> Kod pocztowy</label>
+                <input type="text" class="form-control form-control-lg fs-4 error-input" id="zip"
+                    placeholder="Podaj kod pocztowy">
+                <p class="error-text">error</p>
+            </div>
+
+            <div class="col-12 mb-2 form-box">
+                <label for="voivodeship" class="fs-4 ps-1"> Województwo</label>
+                <select class="form-control form-control-lg fs-4" id="voivodeship">
                     <option value="0" selected disabled>- wybierz województwo -</option>
                     <option value="1">dolnośląskie</option>
                     <option value="2">kujawsko-pomorskie</option>
@@ -83,24 +91,26 @@
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 mb-3 form-box">
-                <input type="text" class="form-control form-control-lg fs-3" id="phone-number"
-                    placeholder="Numer telefonu">
+            <div class="col-12 mb-2 form-box">
+                <label for="profil-photo" class="fs-4 ps-1"> Numer telefonu</label>
+                <input type="text" class="form-control form-control-lg fs-4" id="phone-number"
+                    placeholder="Podaj numer telefonu">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 mb-3 form-box ">
-                <input type="email" class="form-control form-control-lg fs-3" id="mail" placeholder="E-mail">
+            <div class="col-12 mb-2 form-box ">
+                <label for="profil-photo" class="fs-4 ps-1"> E-mail</label>
+                <input type="email" class="form-control form-control-lg fs-4" id="mail" placeholder="Podaj e-mail">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 mb-3 form-box">
-                <label for="profil-photo" class="fs-3 ps-1 mb-2"> Wybierz zdjęcie profilowe</label>
-                <input type="file" class="form-control form-control-lg fs-3" id="profil-photo">
+            <div class="col-12 mb-2 form-box">
+                <label for="profil-photo" class="fs-4 ps-1"> Wybierz zdjęcie profilowe</label>
+                <input type="file" class="form-control form-control-lg fs-4" id="profil-photo">
                 <p class="error-text">error</p>
             </div>
 
-            <div class="col-12 form-check mb-5 fs-5 form-box">
+            <div class="col-12 form-check mb-2 fs-5 form-box">
                 <input class="form-check-input" type="checkbox" value="" id="regulations">
                 <label class="form-check-label" for="flexCheckDefault">
                     Oświadczam, że zapoznałem się z Regulaminem oraz Polityką prywatności i akceptuję postanowienia obu

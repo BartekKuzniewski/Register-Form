@@ -8,7 +8,6 @@ const zipCode = document.querySelector('#zip');
 const phoneNumber = document.querySelector('#phone-number');
 const mail = document.querySelector('#mail');
 const profilPhoto = document.querySelector('#profil-photo');
-
 const voivodeship = document.querySelector('#voivodeship');
 
 const allInputs = [
@@ -55,7 +54,7 @@ function showError(input, msg) {
 	const errorText = formBox.querySelector('.error-text');
 
 	formBox.classList.add('error');
-	errorText.textContent = `Podaj ${msg}`;
+	errorText.textContent = msg;
 }
 
 function clearError(input) {
@@ -87,6 +86,15 @@ function checkVoivodeshipInput(input) {
 	}
 }
 
+function checkLength(input, minLength) {
+	if (input.value < minLength) {
+		showError(
+			input,
+			`${input.previousElementSibling.textContent} musi składać się z ${minLength} cyfr`
+		);
+	}
+}
+
 clearBtn.addEventListener('click', clearAllInputs);
 
 sendBtn.addEventListener('click', (e) => {
@@ -94,5 +102,6 @@ sendBtn.addEventListener('click', (e) => {
 	checkInputsValue(allInputs);
 	checkPhotoInput(profilPhoto);
 	checkVoivodeshipInput(voivodeship);
-
+	checkLength(pesel, 11);
+	checkLength(phoneNumber, 9);
 });
