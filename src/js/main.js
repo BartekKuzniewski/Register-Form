@@ -87,13 +87,26 @@ function checkVoivodeshipInput(input) {
 }
 
 function checkLength(input, minLength) {
-	if (input.value < minLength) {
+	if (input.value.length < minLength) {
 		showError(
 			input,
 			`${input.previousElementSibling.textContent} musi składać się z ${minLength} cyfr`
 		);
-	}
+	} else if(input.value.length > minLength){
+        showError(input, `${input.previousElementSibling.textContent} jest za długi`)
+    }
 }
+
+function validZipCode(input) 
+{
+    if (!input.value.match(/^\d\d-\d\d\d$/)) 
+    {
+        showError(input, `${input.previousElementSibling.textContent} powinieć wyglądać tak: NN-NNN`)
+    } else {
+        clearError(input);
+    }
+}
+
 
 clearBtn.addEventListener('click', clearAllInputs);
 
@@ -104,4 +117,5 @@ sendBtn.addEventListener('click', (e) => {
 	checkVoivodeshipInput(voivodeship);
 	checkLength(pesel, 11);
 	checkLength(phoneNumber, 9);
+    validZipCode(zipCode);
 });
