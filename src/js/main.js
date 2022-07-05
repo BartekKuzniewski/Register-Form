@@ -9,6 +9,7 @@ const phoneNumber = document.querySelector('#phone-number');
 const mail = document.querySelector('#mail');
 const profilPhoto = document.querySelector('#profil-photo');
 const voivodeship = document.querySelector('#voivodeship');
+const regulations = document.querySelector('#regulations');
 
 const allInputs = [
 	firstName,
@@ -37,6 +38,7 @@ function clearAllInputs(e) {
 	if (voivodeship !== 0) {
 		voivodeship.value = 0;
 	}
+
 }
 
 function checkInputsValue(input) {
@@ -112,13 +114,59 @@ function validZipCode(input) {
 }
 
 function validMail(mail) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+	const re =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
 
-    if (re.test(mail.value)) {
-        clearError(mail)
-    } else {
-        showError(mail, 'E-mail jest niepoprawny')
-    }
+	if (re.test(mail.value)) {
+		clearError(mail);
+	} else {
+		showError(mail, 'E-mail jest niepoprawny');
+	}
+}
+
+function checkRegulations(input) {
+	const formBox = input.parentElement;
+	console.log(formBox);
+	const errorText = formBox.querySelector('.error-text');
+	console.log(errorText);
+
+	if (input.checked) {
+		errorText.style.visibility = 'hidden';
+	} else {
+		errorText.style.visibility = 'visible';
+		errorText.textContent = `Musisz zaakceptować regulamin`;
+	}
+}
+
+function validLetters(inputs) {
+	const letters = /^[A-Za-z]+$/;
+	inputs.forEach((input) => {
+		if (input.value.match(letters)) {
+			clearError(input);
+		} else if (input.value === '') {
+			showError(input, input.placeholder);
+		} else {
+			showError(
+				input,
+				`${input.previousElementSibling.textContent} nie może zawierać cyfr`
+			);
+		}
+	});
+}
+
+function validNumbers(input) {
+	const numbers = /^\d+$/;
+
+	if (input.value.match(numbers)) {
+		clearError(input);
+	} else if (input.value === '') {
+		showError(input, input.placeholder);
+	} else {
+		showError(
+			input,
+			`${input.previousElementSibling.textContent} nie może zawierać liter`
+		);
+	}
 }
 
 clearBtn.addEventListener('click', clearAllInputs);
@@ -128,8 +176,11 @@ sendBtn.addEventListener('click', (e) => {
 	checkInputsValue(allInputs);
 	checkPhotoInput(profilPhoto);
 	checkVoivodeshipInput(voivodeship);
+	checkRegulations(regulations);
 	checkLength(pesel, 11);
 	checkLength(phoneNumber, 9);
 	validZipCode(zipCode);
-    validMail(mail);
+	validMail(mail);
+	validLetters([firstName, lastName, city]);
+	validNumbers(flatNumber);
 });
