@@ -91,3 +91,17 @@ body {
         margin-bottom: 2em;
     }
 }
+
+.modal-animation {
+	animation: show-modal .5s;
+}
+
+@keyframes show-modal {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

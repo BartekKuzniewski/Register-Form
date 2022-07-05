@@ -27,6 +27,8 @@ const sendBtn = document.querySelector('.send');
 const clearBtn = document.querySelector('.clear');
 const closeModalBtn = document.querySelector('.close');
 
+const modal = document.querySelector('.modal-shadow');
+
 function clearAllInputs(e) {
 	e.preventDefault();
 
@@ -52,6 +54,9 @@ function clearAllInputs(e) {
 	if (voivodeship !== 0) {
 		voivodeship.value = 0;
 	}
+
+    modal.style.display = 'none';
+    regulations.checked = false;
 }
 
 function checkInputsValue(input) {
@@ -179,6 +184,30 @@ function validNumbers(input) {
 	}
 }
 
+function checkErrors () {
+    const allInputs = document.querySelectorAll('.form-box');
+    let errorCounter = 0;
+
+    allInputs.forEach(input => {
+        if(input.classList.contains('error')){
+            errorCounter++
+        }
+    })
+
+    if(errorCounter === 0) {
+        showModal()
+    }
+    console.log(errorCounter);
+}
+
+function showModal() {
+   modal.style.display = 'block';
+   modal.classList.add('modal-animation')
+   setTimeout(() => {
+    modal.classList.remove('modal-animation');
+}, 400);
+}
+
 clearBtn.addEventListener('click', clearAllInputs);
 
 sendBtn.addEventListener('click', (e) => {
@@ -193,4 +222,7 @@ sendBtn.addEventListener('click', (e) => {
 	validMail(mail);
 	validLetters([firstName, lastName, city]);
 	validNumbers(flatNumber);
+    checkErrors();
 });
+
+closeModalBtn.addEventListener('click', clearAllInputs)
