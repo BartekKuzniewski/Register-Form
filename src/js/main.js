@@ -92,21 +92,34 @@ function checkLength(input, minLength) {
 			input,
 			`${input.previousElementSibling.textContent} musi składać się z ${minLength} cyfr`
 		);
-	} else if(input.value.length > minLength){
-        showError(input, `${input.previousElementSibling.textContent} jest za długi`)
-    }
+	} else if (input.value.length > minLength) {
+		showError(
+			input,
+			`${input.previousElementSibling.textContent} jest za długi`
+		);
+	}
 }
 
-function validZipCode(input) 
-{
-    if (!input.value.match(/^\d\d-\d\d\d$/)) 
-    {
-        showError(input, `${input.previousElementSibling.textContent} powinieć wyglądać tak: NN-NNN`)
+function validZipCode(input) {
+	if (!input.value.match(/^\d\d-\d\d\d$/)) {
+		showError(
+			input,
+			`${input.previousElementSibling.textContent} powinieć wyglądać tak: NN-NNN`
+		);
+	} else {
+		clearError(input);
+	}
+}
+
+function validMail(mail) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+
+    if (re.test(mail.value)) {
+        clearError(mail)
     } else {
-        clearError(input);
+        showError(mail, 'E-mail jest niepoprawny')
     }
 }
-
 
 clearBtn.addEventListener('click', clearAllInputs);
 
@@ -117,5 +130,6 @@ sendBtn.addEventListener('click', (e) => {
 	checkVoivodeshipInput(voivodeship);
 	checkLength(pesel, 11);
 	checkLength(phoneNumber, 9);
-    validZipCode(zipCode);
+	validZipCode(zipCode);
+    validMail(mail);
 });
