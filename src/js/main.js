@@ -216,7 +216,7 @@ sendBtn.addEventListener('click', (e) => {
 	checkPhotoInput(profilPhoto);
 	checkVoivodeshipInput(voivodeship);
 	checkRegulations(regulations);
-	checkLength(pesel, 11);
+	checkLength(pesel, 11); 
 	checkLength(phoneNumber, 9);
 	validZipCode(zipCode);
 	validMail(mail);
@@ -226,3 +226,4 @@ sendBtn.addEventListener('click', (e) => {
 });
 
 closeModalBtn.addEventListener('click', clearAllInputs)
+window.addEventListener('click', e => e.target === modal ?  modal.style.display = 'none' : false)
