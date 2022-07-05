@@ -12,6 +12,7 @@ html {
 
 body {
 	min-height: 100vh;
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -64,6 +65,8 @@ body {
 .modal-shadow {
 	display: none;
 	position: absolute;
+	min-width: 100vh;
+	min-height: 100vh;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.65);

@@ -11,7 +11,7 @@ const profilPhoto = document.querySelector('#profil-photo');
 const voivodeship = document.querySelector('#voivodeship');
 const regulations = document.querySelector('#regulations');
 
-const allInputs = [
+const Inputs = [
 	firstName,
 	lastName,
 	pesel,
@@ -31,8 +31,15 @@ const modal = document.querySelector('.modal-shadow');
 
 function clearAllInputs(e) {
 	e.preventDefault();
-
 	profilPhoto.value = '';
+    
+	if (voivodeship !== 0) {
+		voivodeship.value = 0;
+	}
+
+	modal.style.display = 'none';
+	regulations.checked = false;
+
 	[
 		firstName,
 		lastName,
@@ -45,18 +52,11 @@ function clearAllInputs(e) {
 		mail,
 		profilPhoto,
 		voivodeship,
-        regulations
+		regulations,
 	].forEach((input) => {
 		input.value = '';
 		clearError(input);
 	});
-
-	if (voivodeship !== 0) {
-		voivodeship.value = 0;
-	}
-
-    modal.style.display = 'none';
-    regulations.checked = false;
 }
 
 function checkInputsValue(input) {
@@ -111,9 +111,9 @@ function checkRegulations(input) {
 	const errorText = formBox.querySelector('.error-text');
 
 	if (!input.checked) {
-        showError(input, input.placeholder)
+		showError(input, input.placeholder);
 	} else {
-        clearError(input)
+		clearError(input);
 	}
 }
 
@@ -184,46 +184,48 @@ function validNumbers(input) {
 	}
 }
 
-function checkErrors () {
-    const allInputs = document.querySelectorAll('.form-box');
-    let errorCounter = 0;
+function checkErrors() {
+	const allInputs = document.querySelectorAll('.form-box');
+	let errorCounter = 0;
 
-    allInputs.forEach(input => {
-        if(input.classList.contains('error')){
-            errorCounter++
-        }
-    })
+	allInputs.forEach((input) => {
+		if (input.classList.contains('error')) {
+			errorCounter++;
+		}
+	});
 
-    if(errorCounter === 0) {
-        showModal()
-    }
-    console.log(errorCounter);
+	if (errorCounter === 0) {
+		showModal();
+	}
+	console.log(errorCounter);
 }
 
 function showModal() {
-   modal.style.display = 'block';
-   modal.classList.add('modal-animation')
-   setTimeout(() => {
-    modal.classList.remove('modal-animation');
-}, 400);
+	modal.style.display = 'block';
+	modal.classList.add('modal-animation');
+	setTimeout(() => {
+		modal.classList.remove('modal-animation');
+	}, 400);
 }
 
 clearBtn.addEventListener('click', clearAllInputs);
 
 sendBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	checkInputsValue(allInputs);
+	checkInputsValue(Inputs);
 	checkPhotoInput(profilPhoto);
 	checkVoivodeshipInput(voivodeship);
 	checkRegulations(regulations);
-	checkLength(pesel, 11); 
+	checkLength(pesel, 11);
 	checkLength(phoneNumber, 9);
 	validZipCode(zipCode);
 	validMail(mail);
 	validLetters([firstName, lastName, city]);
 	validNumbers(flatNumber);
-    checkErrors();
+	checkErrors();
 });
 
-closeModalBtn.addEventListener('click', clearAllInputs)
-window.addEventListener('click', e => e.target === modal ?  modal.style.display = 'none' : false)
+closeModalBtn.addEventListener('click', clearAllInputs);
+window.addEventListener('click', (e) =>
+	e.target === modal ? (modal.style.display = 'none') : false
+);
