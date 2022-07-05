@@ -29,16 +29,29 @@ const closeModalBtn = document.querySelector('.close');
 
 function clearAllInputs(e) {
 	e.preventDefault();
-	profilPhoto.value = '';
 
-	allInputs.forEach((input) => {
+	profilPhoto.value = '';
+	[
+		firstName,
+		lastName,
+		pesel,
+		street,
+		flatNumber,
+		city,
+		zipCode,
+		phoneNumber,
+		mail,
+		profilPhoto,
+		voivodeship,
+        regulations
+	].forEach((input) => {
 		input.value = '';
+		clearError(input);
 	});
 
 	if (voivodeship !== 0) {
 		voivodeship.value = 0;
 	}
-
 }
 
 function checkInputsValue(input) {
@@ -88,6 +101,17 @@ function checkVoivodeshipInput(input) {
 	}
 }
 
+function checkRegulations(input) {
+	const formBox = input.parentElement;
+	const errorText = formBox.querySelector('.error-text');
+
+	if (!input.checked) {
+        showError(input, input.placeholder)
+	} else {
+        clearError(input)
+	}
+}
+
 function checkLength(input, minLength) {
 	if (input.value.length < minLength) {
 		showError(
@@ -121,20 +145,6 @@ function validMail(mail) {
 		clearError(mail);
 	} else {
 		showError(mail, 'E-mail jest niepoprawny');
-	}
-}
-
-function checkRegulations(input) {
-	const formBox = input.parentElement;
-	console.log(formBox);
-	const errorText = formBox.querySelector('.error-text');
-	console.log(errorText);
-
-	if (input.checked) {
-		errorText.style.visibility = 'hidden';
-	} else {
-		errorText.style.visibility = 'visible';
-		errorText.textContent = `Musisz zaakceptować regulamin`;
 	}
 }
 
