@@ -32,13 +32,11 @@ const modal = document.querySelector('.modal-shadow');
 function clearAllInputs(e) {
 	e.preventDefault();
 	profilPhoto.value = '';
-    
+	regulations.checked = false;
+
 	if (voivodeship !== 0) {
 		voivodeship.value = 0;
 	}
-
-	modal.style.display = 'none';
-	regulations.checked = false;
 
 	[
 		firstName,
@@ -57,6 +55,8 @@ function clearAllInputs(e) {
 		input.value = '';
 		clearError(input);
 	});
+
+	modal.style.display = 'none';
 }
 
 function checkInputsValue(input) {
