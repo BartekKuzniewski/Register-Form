@@ -36,6 +36,7 @@ function clearAllInputs(e) {
 
 	if (voivodeship !== 0) {
 		voivodeship.value = 0;
+		clearError(voivodeship);
 	}
 
 	[
@@ -49,7 +50,6 @@ function clearAllInputs(e) {
 		phoneNumber,
 		mail,
 		profilPhoto,
-		voivodeship,
 		regulations,
 	].forEach((input) => {
 		input.value = '';
